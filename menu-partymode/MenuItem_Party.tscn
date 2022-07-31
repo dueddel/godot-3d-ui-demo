@@ -1,0 +1,149 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://menu-partymode/menu-item.png" type="Texture" id=1]
+[ext_resource path="res://fonts/mono-120.tres" type="DynamicFont" id=2]
+[ext_resource path="res://menu-partymode/MenuItem_Party.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.39, 0.39, 0.001 )
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Label/Viewport")
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("ClickedViewport")
+
+[node name="MenuItem_Party" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="MouseCollider" type="StaticBody" parent="."]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="MouseCollider"]
+shape = SubResource( 1 )
+
+[node name="Button" type="Sprite3D" parent="."]
+layers = 32768
+modulate = Color( 2.2, 2.2, 2.2, 1 )
+pixel_size = 0.0008
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 5, 5, 1000, 1000 )
+
+[node name="Label" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2 )
+flip_v = true
+pixel_size = 0.0007
+texture = SubResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="Label"]
+size = Vector2( 1000, 1000 )
+transparent_bg = true
+
+[node name="Label" type="Label" parent="Label/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
+text = "Button
+Label"
+align = 1
+valign = 1
+
+[node name="ClickLabels" type="Spatial" parent="."]
+
+[node name="ClickLabel" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.908501, -0.417882, 0, 0.417882, 0.908501, 0, 0, 0, 1, 0.271302, 0.180445, 0.1 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel"]
+
+[node name="ClickLabel2" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.960692, 0.277617, 0, -0.277617, 0.960692, 0, 0, 0, 1, -0.24257, -0.254349, 0.1 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel2"]
+
+[node name="ClickLabel3" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.807136, -0.590366, 0, 0.590366, 0.807136, 0, 0, 0, 1, -0.33825, 0.0489828, 0.0999999 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel3"]
+
+[node name="ClickLabel4" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.916447, -0.400157, 0, 0.400157, 0.916447, 0, 0, 0, 1, 0.253378, -0.281365, 0.1 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel4"]
+
+[node name="ClickLabel5" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.95401, 0.299774, 0, -0.299774, 0.95401, 0, 0, 0, 1, -0.162844, 0.261167, 0.1 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel5"]
+
+[node name="ClickLabel6" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.95401, 0.299774, 0, -0.299774, 0.95401, 0, 0, 0, 1, 0.386674, -0.0188523, 0.1 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel6"]
+
+[node name="ClickLabel7" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.84067, 0.541547, 0, -0.541547, 0.84067, 0, 0, 0, 1, 0.0466986, 0.333314, 0.1 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel7"]
+
+[node name="ClickLabel8" type="Sprite3D" parent="ClickLabels"]
+transform = Transform( 0.976642, -0.214871, 0, 0.214871, 0.976642, 0, 0, 0, 1, -0.0200453, -0.321644, 0.1 )
+visible = false
+flip_v = true
+modulate = Color( 3, 0, 0, 1 )
+pixel_size = 0.001
+texture = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="ClickLabels/ClickLabel8"]
+
+[node name="ClickedViewport" type="Viewport" parent="."]
+size = Vector2( 1000, 1000 )
+transparent_bg = true
+
+[node name="Label" type="Label" parent="ClickedViewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
+text = "Click!"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

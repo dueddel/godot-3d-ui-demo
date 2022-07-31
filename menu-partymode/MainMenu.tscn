@@ -1,0 +1,192 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://menu-partymode/MenuItem_Party.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menu-partymode/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://fonts/mono-120.tres" type="DynamicFont" id=3]
+
+[sub_resource type="ViewportTexture" id=20]
+viewport_path = NodePath("GameTitle/Viewport")
+
+[sub_resource type="ViewportTexture" id=21]
+viewport_path = NodePath("Party/Viewport")
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 5, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "party"
+length = 0.8
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 5, 0, 0, 1 ), Color( 0, 0.43, 3, 1 ), Color( 1.38, 1.2, 0, 1 ) ]
+}
+
+[sub_resource type="ViewportTexture" id=22]
+viewport_path = NodePath("Unparty/Viewport")
+
+[sub_resource type="SpatialMaterial" id=19]
+emission_enabled = true
+emission = Color( 1, 2, 1.5, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="PlaneMesh" id=18]
+material = SubResource( 19 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 0 ), 0.0, 8.02138, 0, 0, Vector2( 0.125789, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.288629 ), 0.0, 0.0, 0, 0 ]
+
+[node name="MainMenu" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="CamPivot" type="Position3D" parent="."]
+
+[node name="Camera" type="Camera" parent="CamPivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+fov = 30.0
+
+[node name="GameTitle" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02768, -3 )
+flip_v = true
+pixel_size = 0.003
+texture = SubResource( 20 )
+
+[node name="Viewport" type="Viewport" parent="GameTitle"]
+size = Vector2( 2000, 2000 )
+transparent_bg = true
+
+[node name="Label" type="Label" parent="GameTitle/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Generic Game Title"
+align = 1
+valign = 1
+
+[node name="Party" type="Sprite3D" parent="."]
+transform = Transform( 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0.0456954, 0.642578, -1.32992 )
+visible = false
+flip_v = true
+modulate = Color( 5, 0, 0, 1 )
+pixel_size = 0.002
+texture = SubResource( 21 )
+
+[node name="Viewport" type="Viewport" parent="Party"]
+size = Vector2( 2000, 2000 )
+transparent_bg = true
+
+[node name="Label" type="Label" parent="Party/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Party Mode!"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Party"]
+autoplay = "party"
+anims/RESET = SubResource( 12 )
+anims/party = SubResource( 13 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Party"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Party"]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Party"]
+
+[node name="Unparty" type="Sprite3D" parent="."]
+transform = Transform( 0.997047, 0.0767886, 0, -0.0767886, 0.997047, 0, 0, 0, 1, 0.0456954, -0.915102, -0.0389571 )
+visible = false
+flip_v = true
+modulate = Color( 5, 0, 0, 1 )
+pixel_size = 0.0015
+texture = SubResource( 22 )
+
+[node name="Viewport" type="Viewport" parent="Unparty"]
+size = Vector2( 2000, 2000 )
+transparent_bg = true
+
+[node name="Label" type="Label" parent="Unparty/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Boring Mode Again… :-("
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="Unparty"]
+
+[node name="Partycles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1 )
+emitting = false
+amount = 50
+lifetime = 0.8
+mesh = SubResource( 18 )
+emission_shape = 2
+emission_box_extents = Vector3( 4, 1, 1 )
+flag_align_y = true
+flag_rotate_y = true
+direction = Vector3( 1, 1, 1 )
+initial_velocity = 2.0
+initial_velocity_random = 1.0
+angular_velocity = 30.0
+angular_velocity_random = 1.0
+radial_accel = 5.0
+damping = 5.0
+angle = 10.0
+angle_random = 1.0
+scale_amount = 0.01
+scale_amount_random = 0.1
+scale_amount_curve = SubResource( 15 )
+
+[node name="MenuItems" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.307838, 0 )
+
+[node name="Item1" parent="MenuItems" instance=ExtResource( 1 )]
+transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -1.5, 0, 0 )
+button_label = "Cool
+Menu
+Item"
+button_rotate_hover = false
+
+[node name="Item2" parent="MenuItems" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0 )
+button_label = "An Awesome
+Thing Here!"
+button_rotate_hover = false
+
+[node name="Item3" parent="MenuItems" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0 )
+button_label = "And
+Here!"
+button_rotate_hover = false
+
+[node name="Item4" parent="MenuItems" instance=ExtResource( 1 )]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 1.5, 0, 0 )
+button_label = "Yet
+Another
+One"
+button_rotate_hover = false

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menu-minimal/MenuItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menu-minimal/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://sample-scenes/RedScene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sample-scenes/GreenScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sample-scenes/BlueScene.tscn" type="PackedScene" id=5]
+
+[node name="MainMenu" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="CamPivot" type="Position3D" parent="."]
+
+[node name="Camera" type="Camera" parent="CamPivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+fov = 30.0
+
+[node name="MenuItems" type="Spatial" parent="."]
+
+[node name="Red" parent="MenuItems" instance=ExtResource( 1 )]
+transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -1, 0, 0 )
+button_label = "Red"
+scene_to_load = ExtResource( 3 )
+label_modulate_normal = Color( 3, 0, 0, 1 )
+
+[node name="Green" parent="MenuItems" instance=ExtResource( 1 )]
+button_label = "Green"
+scene_to_load = ExtResource( 4 )
+label_modulate_normal = Color( 0, 2, 0, 1 )
+
+[node name="Blue" parent="MenuItems" instance=ExtResource( 1 )]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 1, 0, 0 )
+button_label = "Blue"
+scene_to_load = ExtResource( 5 )
+label_modulate_normal = Color( 0.5, 0.5, 3, 1 )
