@@ -28,6 +28,11 @@ To see how I've implemented the "party mode" as seen in the video of said Reddit
 Basically the party mode sources are a direct copy of the minimal directory where I simply added a bit extra stuff.
 
 
+#### Activate party mode
+
+Activating the party mode is mapped to the space bar key.
+
+
 #### By no means perfect
 
 Please know that this whole project was a fun idea without the aspiration of building something neat and elegant. Especially the party-mode related code is put together roughly and explicitly without any sophisticated design priniciples of software development in mind.  
